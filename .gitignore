@@ -1,2 +1,2 @@
-/node-modules
-/buildnode_modules/.cache/
+node_modules/
+node_modules/.cache/
