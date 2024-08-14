@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 
 const App = () => {
+  console.log("App.js is opened");
   return (
     <Router>
       <Routes>

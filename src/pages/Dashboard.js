@@ -31,6 +31,7 @@ const testTasks = [
 ];
 
 const Dashboard = () => {
+  console.log("Dashboard.js is opened");
   const [tasks, setTasks] = useState(testTasks);
   const [selectedTask, setSelectedTask] = useState(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
