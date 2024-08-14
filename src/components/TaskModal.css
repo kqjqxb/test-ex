@@ -1,0 +1,57 @@
+.image-preview {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .preview-box {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-color: white;
+    width: 60%;
+    left: 25%;
+  }
+  
+  .modal-content {
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  background-color: rgba(255, 255, 255, 0.016);
+  max-height: 90vh; 
+  overflow-y: auto;
+  }
+  
+  .modal-close{
+
+    width: 30px !important;
+    height: 30px !important;
+    padding-top: 7px !important;
+    padding-left: 7px !important;
+
+
+  }
+
+  #close-modal-button{
+    margin-left: 530px !important;
+
+  }
+
+  
