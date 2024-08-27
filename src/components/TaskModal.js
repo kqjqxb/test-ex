@@ -1,181 +1,3 @@
-// import React, { useState } from 'react';
-// import Modal from 'react-modal';
-// import axios from 'axios';
-// import '../App.css';
-
-// Modal.setAppElement('#root');
-
-// const TaskModal = ({ task, closeModal, updateTask }) => {
-//   const [images, setImages] = useState([]);
-//   const [dimension, setDimension] = useState(task.dimension || '');
-//   const [flow, setFlow] = useState('');
-//   const [style, setStyle] = useState('');
-//   const [manualPrompts, setManualPrompts] = useState('');
-//   const [genPerRef, setGenPerRef] = useState(0);
-//   const [text, setText] = useState('');
-//   const [gen_type, setGen_type] = useState(task.gen_type || '');
-
-//   const dimensionOptions = ['1x1', '9x16', '16x9'];
-//   const flowOptions = ['other_models_mix', 'mj_model'];
-//   const genTypeOptions = ['random_generation', 'cyclic_generation'];
-//   const stylesOptions = ['An ultra-realistic photography', 'Anime style'];
-
-//   const handleGenerate = async () => {
-//     try {
-//       const response = await axios.post('https://fasteasy-jvqis72guq-lm.a.run.app/tz-front/generate_images', {
-//         images,
-//         dimension,
-//         style,
-//         manual_prompts: manualPrompts,
-//         gen_per_ref: genPerRef,
-//         flow,
-//         text
-//       }, {
-//         auth: {
-//           username: 'renesandro',
-//           password: 'qwerty1234',
-//         },
-//       });
-//       console.log('Generated images:', response.data);
-
-//       const updatedTask = { ...task, dimension, gen_type,  flow, style, manual_prompts: manualPrompts, genPerRef, text };
-//       updateTask(updatedTask);
-
-//       closeModal();
-//     } catch (error) {
-//       console.error('Error generating images:', error);
-//     }
-//   };
-  
-
-//   return (
-//     <Modal
-//       isOpen={true}
-//       onRequestClose={closeModal}
-//       contentLabel="Task Modal"
-//       className="modal-content"
-//       overlayClassName="modal-overlay"
-//     >
-//       <div>
-//         <span className="close" onClick={closeModal}>&times;</span>
-//         <h2>{task.task_name}</h2>
-//         <form>
-//           <div>
-//             <label>Text:</label>
-//             <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
-//           </div>
-//           <div>
-//             <label>Dimension:</label>
-//             <select value={dimension} onChange={(e) => setDimension(e.target.value)}>
-//               <option value="">Select Dimension</option>
-//               {dimensionOptions.map(option => (
-//                 <option key={option} value={option}>{option}</option>
-//               ))}
-//             </select>
-//           </div>
-//           <div>
-//             <label>Flow:</label>
-//             <select value={flow} onChange={(e) => setFlow(e.target.value)}>
-//               <option value="">Select Flow</option>
-//               {flowOptions.map(option => (
-//                 <option key={option} value={option}>{option}</option>
-//               ))}
-//             </select>
-//           </div>
-//           <div>
-//             <label>Manual Prompts:</label>
-//             <input type="text" value={manualPrompts} onChange={(e) => setManualPrompts(e.target.value)} />
-//           </div>
-//           <div>
-//             <label>Gen Per Ref:</label>
-//             <input type="number" value={genPerRef} onChange={(e) => setGenPerRef(Number(e.target.value))} />
-//           </div>
-//           <div>
-//             <label>Generation Type:</label>
-//             <select value={gen_type} onChange={(e) => setGen_type(e.target.value)}>
-//               <option value="">Select Generation Type</option>
-//               {genTypeOptions.map(option => (
-//                 <option key={option} value={option}>{option}</option>
-//               ))}
-//             </select>
-//           </div>
-//           <div>
-//             <label>Style:</label>
-//             <select value={style} onChange={(e) => setStyle(e.target.value)}>
-//               <option value="">Select Style</option>
-//               {stylesOptions.map(option => (
-//                 <option key={option} value={option}>{option}</option>
-//               ))}
-//             </select>
-//           </div>
-//           <button type="button" onClick={handleGenerate}>Generate</button>
-//         </form>
-//       </div>
-//     </Modal>
-//   );
-// };
-
-// export default TaskModal;
-
-
-
-
-
-
-
-
-
-
-
-// const handleGenerate = async () => {
-//   try {
-//     const response = await axios.post('https://fasteasy-jvqis72guq-lm.a.run.app/tz-front/generate_images', {
-//       images: [selectedLayer],
-//       dimension,
-//       style,
-//       manual_prompts: manualPrompts,
-//       gen_per_ref: genPerRef,
-//       flow,
-//       text
-//     }, {
-//       auth: {
-//         username: 'renesandro',
-//         password: 'qwerty1234',
-//       },
-//     });
-//     console.log('Generated images:', response.data);
-
-//     // Оновлюємо завдання з новими даними
-//     const updatedTask = { 
-//       ...task, 
-//       dimension, 
-//       gen_type, 
-//       flow, 
-//       style, 
-//       manual_prompts: manualPrompts, 
-//       genPerRef, 
-//       text, 
-//       images 
-//     };
-//     updateTask(updatedTask);
-
-//     // Закриваємо модальне вікно
-//     closeModal();
-//   } catch (error) {
-//     console.error('Error generating images:', error);
-
-//     // Навіть у випадку помилки ви можете закрити модальне вікно, якщо це потрібно
-//     closeModal();
-//   }
-// };
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './TaskModal.css';
@@ -208,7 +30,6 @@ const TaskModal = ({ isOpen, onClose, task, onSave }) => {
 
 const handleGenerate = async () => {
   try {
-    // Формуємо дані для запиту
     const requestData = {
       images: selectedImage ? [selectedImage] : [],
       dimension,
@@ -219,7 +40,7 @@ const handleGenerate = async () => {
       text
     };
 
-    // Виконуємо POST запит до API
+    // POST запит до API
     const response = await axios.post('https://fasteasy-jvqis72guq-lm.a.run.app/tz-front/generate_images', requestData, {
       auth: {
         username: 'renesandro',
@@ -229,7 +50,6 @@ const handleGenerate = async () => {
 
     console.log('Generated images:', response.data);
 
-    // Оновлюємо завдання із отриманими даними
     const updatedTask = {
       ...task,
       dimension,
@@ -240,11 +60,11 @@ const handleGenerate = async () => {
       images: selectedImage ? [...(task.images || []), selectedImage] : task.images,
     };
 
-    onSave(updatedTask); // Зберігаємо оновлені дані завдання
+    onSave(updatedTask); 
   } catch (error) {
     console.error('Error generating images:', error);
 
-    // Оновлюємо завдання навіть у випадку помилки, щоб зберегти вибране фото
+    // оновлення завдання і у випадку помилки(для фото) 
     const updatedTask = {
       ...task,
       dimension,
@@ -256,9 +76,9 @@ const handleGenerate = async () => {
       text
     };
 
-    onSave(updatedTask); // Зберігаємо дані, навіть якщо API-запит не вдався
+    onSave(updatedTask); 
   } finally {
-    onClose(); // Закриваємо модальне вікно незалежно від результату
+    onClose(); 
   }
 };
 
@@ -268,9 +88,8 @@ const handleGenerate = async () => {
     if (file && ['image/png', 'image/jpg', 'image/jpeg'].includes(file.type)) {
       const fileName = file.name;
       setSelectedImage(fileName);
-      setImagePreview(URL.createObjectURL(file)); // Generate preview
+      setImagePreview(URL.createObjectURL(file)); 
 
-      // Update the image list and preview
       if (selectedImage && task.images.includes(selectedImage)) {
         const updatedImages = task.images.map(img => img === selectedImage ? fileName : img);
         onSave({
@@ -297,7 +116,7 @@ const handleGenerate = async () => {
     const imageName = e.target.value;
     setSelectedImage(imageName);
     if (imageName && task.images.includes(imageName)) {
-      setImagePreview(null); // Clear preview if an existing image is selected
+      setImagePreview(null); 
     }
   };
 
